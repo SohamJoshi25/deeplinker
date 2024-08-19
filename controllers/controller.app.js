@@ -90,16 +90,13 @@ const packages = {
     navi: "com.navi.app" 
 }
 
-
 const getURL = async (req, res) => {
     try {
-        // Extract and decode the URL parameter from the request
         const shortURL = req.params.url;
         if (!shortURL) {
             return res.status(400).send('URL query parameter is required');
         }
 
-        // Find the link in the database
         const Link = await linkModel.findOne({ shortURL });
         if (!Link) {
             return res.status(404).send('URL Not Found');
@@ -155,35 +152,27 @@ const addURL = async (req, res) => {
     }
 } 
 
-
-
 const deleteURL = async (req, res) => {
     try {
         const URL = req.body.url;
         if (!URL) {
             return res.status(400).send('URL query parameter is required');
         }
-        
-        // Extract the shortURL from the request parameters
+     
         const shortURLarray = URL.split('/');
         const shortURL = shortURLarray[shortURLarray.length-1];
 
-
-        // Check if the shortURL is provided
         if (!shortURL) {
             return res.status(400).send("No URL specified");
         }
         console.log(shortURL)
 
-        // Find and delete the URL in the database
         const deletedLink = await linkModel.findOneAndDelete({ shortURL:shortURL });
 
-        // Check if the URL was found and deleted
         if (!deletedLink) {
             return res.status(404).send("URL not found here" );
         }
 
-        // Render the result page with a success message
         res.render('view.result.ejs', { url: "URL has been deleted successfully",link:"" });
 
     } catch (error) {
@@ -203,7 +192,6 @@ const createPage = (req, res) => {
 const deletePage = (req, res) => {
     res.render('view.delete.ejs')
 }
-
 
 
 module.exports = {getURL,addURL,deleteURL,homePage,createPage,deletePage};
