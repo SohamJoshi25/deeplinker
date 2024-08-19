@@ -1,0 +1,30 @@
+{
+  "name": "deeplinker",
+  "version": "1.0.0",
+  "description": "Creates Deep Links",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SohamJoshi25/deeplinker.git"
+  },
+  "author": "Soham Joshi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SohamJoshi25/deeplinker/issues"
+  },
+  "homepage": "https://github.com/SohamJoshi25/deeplinker#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.3"
+  }
+}
