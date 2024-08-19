@@ -2,7 +2,7 @@ const express = require("express")
 const mongoose = require('mongoose')
 const router = require('./routers/router.app.js')
 require('dotenv').config()
-
+const path = require('path');
 const app = express();
 
  
@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGOURI,{
     useUnifiedTopology:true,
 })
 .then(()=>{
-    app.listen(process.env.PORT, ()=>{
+    app.listen(process.env.PORT || 3000, ()=>{
         console.log('Started and Connected to DB at port ',process.env.PORT);
     });
 }).catch((e)=>{
