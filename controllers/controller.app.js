@@ -116,7 +116,7 @@ const getURL = async (req, res) => {
             deeplink = "https://" + URL;
         } else if (/android/i.test(req.get('User-Agent'))) {
             deeplink = `intent://${URL}#Intent;scheme=https;package=${package};end`;
-        } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent')) && !window.MSStream) {
+        } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent'))) {
             deeplink = `${app}://${URL}`;
         } else {
             deeplink = "https://" + URL;
