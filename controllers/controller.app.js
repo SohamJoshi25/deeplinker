@@ -115,15 +115,14 @@ const getURL = async (req, res) => {
         if (!package) {
             deeplink = "https://" + URL;
         } else if (/android/i.test(req.get('User-Agent'))) {
-            deeplink = `intent://${encodeURIComponent(URL)}#Intent;scheme=https;package=${package};end`;
+            deeplink = `intent://${URL}#Intent;scheme=https;package=${package};end`;
         } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent')) && !window.MSStream) {
-            deeplink = `${app}://${encodeURIComponent(URL)}`;
+            deeplink = `${app}://${URL}`;
         } else {
             deeplink = "https://" + URL;
         }
-        deeplink = decodeURIComponent(deeplink);
         
-        console.log(`Redirecting to: ${deeplink}`);
+        //console.log(`Redirecting to: ${deeplink}`);
         res.render('view.result.ejs',{link:deeplink,url:""});
 
 
