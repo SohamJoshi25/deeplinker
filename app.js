@@ -22,4 +22,3 @@ mongoose.connect(process.env.MONGOURI,{
 }).catch((e)=>{
     console.log(e);
 });
- 

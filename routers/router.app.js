@@ -1,18 +1,14 @@
 const express = require('express')
-const controller = require('../controllers/controller.app.js')
+const pagesController = require('../controllers/controller.pages.js')
+const apiController  = require('../controllers/controller.api.js')
 const router = express.Router()
 
-// router.use((req, res, next) => {
-//     console.log('%s %s %s', req.method, req.url, req.path)
-//     next()
-// })
+router.get('/' , pagesController.homePage)
+router.get('/create' , pagesController.createPage)
+router.get('/delete' , pagesController.deletePage)
 
-router.get('/' , controller.homePage)
-router.get('/create' , controller.createPage)
-router.get('/delete' , controller.deletePage)
-
-router.post('/api/' , controller.addURL)
-router.post('/api/delete', controller.deleteURL);
-router.get('/api/:url' , controller.getURL)
+router.post('/api/' , apiController.addURL)
+router.post('/api/delete', apiController.deleteURL);
+router.get('/api/:url' , apiController.getURL)
 
 module.exports = router; 

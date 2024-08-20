@@ -6,18 +6,22 @@
     <title>Document</title> 
 </head>
 <body>
-    <%if (link) { %>
+    <%if (data.deeplink) { %>
         <h1>Redirecting</h1>
     <% } else { %>
         <h1>Result</h1>
         <% }  %>
 
-    <%if (url) { %>
-        <h2 href="<%= url %>"><%= url %></h2>
+    <%if (data.link) { %>
+        <h2 href="<%= data.link %>"><%= data.link %></h2>
     <% } %>
-    <%if (link) { %>
-        <a id="redirectLink" href="<%= link %>"><%= link %></a>
+    <%if (data.deeplink) { %>
+        <h3>Agent : <%= data.agent %></h3>
+        <a id="redirectLink" href="<%= data.deeplink %>"><%= data.deeplink %></a>
     <% }  %>
+    <%if (data.message) { %>
+        <h2><%= data.message %></h2>
+    <% } %>
 
     <script>
         window.onload = function() {
