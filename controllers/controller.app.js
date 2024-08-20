@@ -4,7 +4,7 @@ const linkModel = require("../models/model.link.js");
 const packages = {
     whatsapp: "com.whatsapp",
     youtube: "com.google.android.youtube",
-    be: "com.google.android.youtube",
+    youtu: "com.google.android.youtube",
     twitter: "com.twitter.android",
     facebook: "com.facebook.katana",
     messenger: "com.facebook.orca",
