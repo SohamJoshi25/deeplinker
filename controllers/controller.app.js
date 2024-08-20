@@ -1,5 +1,4 @@
-
-
+const decodeURL = require("../utils/decodeurl.js");
 const linkModel = require("../models/model.link.js");
 
 const packages = {
@@ -102,27 +101,20 @@ const getURL = async (req, res) => {
             return res.status(404).send('URL Not Found');
         }
 
-        let URL = Link.URL;
-        const website = URL.substring(8).split('/')[0];
-        const app = website.split('.')[1];
+        const URLObj = decodeURL(Link.URL);
 
-        const package = packages[app];
-        let deeplink = "";
-        if(URL.startsWith("https://")){
-            URL = URL.substring(8);
-        }
+        const package = packages[URLObj.domain];
+        const baseURL = URLObj.host + URLObj.path;
 
         if (!package) {
-            deeplink = "https://" + URL;
+            deeplink = "https://" + baseURL;
         } else if (/android/i.test(req.get('User-Agent'))) {
-            deeplink = `intent://${URL}#Intent;scheme=https;package=${package};end`;
+            deeplink = `intent://${URLObj.subdomain}.${URLObj.host}${URLObj.path}#Intent;scheme=https;package=${package};end`;
         } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent'))) {
-            deeplink = `${app}://${URL}`;
+            deeplink = `${URLObj.domain}://${baseURL}`;
         } else {
-            deeplink = "https://" + URL;
+            deeplink = "https://" + baseURL;
         }
-        
-        //console.log(`Redirecting to: ${deeplink}`);
         res.render('view.result.ejs',{link:deeplink,url:""});
 
 
