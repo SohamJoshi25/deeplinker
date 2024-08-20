@@ -117,7 +117,7 @@ const getURL = async (req, res) => {
         const baseHOST = URLObj.domain +"."+ URLObj.tld;
         const dynamicHost = hosts[baseHOST]? hosts[baseHOST] : baseHOST;
         
-        console.log(dynamicHost)
+        //console.log(dynamicHost)
 
 
         if (!package) {
@@ -137,7 +137,7 @@ const getURL = async (req, res) => {
         }
 
 
-        console.log(baseURL)
+        //console.log(baseURL)
         res.render('view.result.ejs',{link:deeplink,url:""});
 
 
