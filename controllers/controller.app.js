@@ -107,25 +107,39 @@ const getURL = async (req, res) => {
 
         const DyamicURL = Link.URL.startsWith("https://")?Link.URL:"https://"+Link.URL
         const URLObj = decodeURL(DyamicURL);
+
         const package = packages[URLObj.domain];
         if (!package) {
             return res.status(400).send('Link App NOt Supported');
         }
+
         const baseURL = URLObj.host + URLObj.path;
-        const dynamicHost = hosts[URLObj.host]? hosts[URLObj.host] : URLObj.host;
+        const baseHOST = URLObj.domain +"."+ URLObj.tld;
+        const dynamicHost = hosts[baseHOST]? hosts[baseHOST] : baseHOST;
+        
         console.log(dynamicHost)
 
 
         if (!package) {
+
             deeplink = "https://" + baseURL;
+
         } else if (/android/i.test(req.get('User-Agent'))) {
+
             deeplink = `intent://${URLObj.subdomain}.${dynamicHost}${URLObj.path}#Intent;scheme=https;package=${package};end`;
+
         } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent'))) {
+
             deeplink = `${URLObj.domain}://${baseURL}`;
+
         } else {
             deeplink = "https://" + baseURL;
         }
+
+
+        console.log(baseURL)
         res.render('view.result.ejs',{link:deeplink,url:""});
+
 
 
     } catch (error) {
