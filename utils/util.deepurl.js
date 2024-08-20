@@ -22,7 +22,7 @@ const decodeURL = (Url) => {
 const deepURL = (orignalurl) => {
     if(orignalurl=="")throw new Error("URL cannot be empty");
     let schemaURL = orignalurl.startsWith("https://")?orignalurl:"https://"+orignalurl;
-    schemaURL.replace("youtu.be/","www.youtube.com/watch?v=");
+    schemaURL = schemaURL.replace("youtu.be/","www.youtube.com/watch?v=");
 
 
       const DyamicURL = schemaURL.startsWith("https://")?schemaURL:"https://"+schemaURL
