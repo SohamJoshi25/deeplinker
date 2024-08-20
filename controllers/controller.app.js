@@ -89,6 +89,10 @@ const packages = {
     navi: "com.navi.app" 
 }
 
+const hosts = {
+    "youtu.be" : "youtube.com" 
+}
+
 const getURL = async (req, res) => {
     try {
         const shortURL = req.params.url;
@@ -101,15 +105,21 @@ const getURL = async (req, res) => {
             return res.status(404).send('URL Not Found');
         }
 
-        const URLObj = decodeURL(Link.URL);
-
+        const DyamicURL = Link.URL.startsWith("https://")?Link.URL:"https://"+Link.URL
+        const URLObj = decodeURL(DyamicURL);
         const package = packages[URLObj.domain];
+        if (!package) {
+            return res.status(400).send('Link App NOt Supported');
+        }
         const baseURL = URLObj.host + URLObj.path;
+        const dynamicHost = hosts[URLObj.host]? hosts[URLObj.host] : URLObj.host;
+        console.log(dynamicHost)
+
 
         if (!package) {
             deeplink = "https://" + baseURL;
         } else if (/android/i.test(req.get('User-Agent'))) {
-            deeplink = `intent://${URLObj.subdomain}.${URLObj.host}${URLObj.path}#Intent;scheme=https;package=${package};end`;
+            deeplink = `intent://${URLObj.subdomain}.${dynamicHost}${URLObj.path}#Intent;scheme=https;package=${package};end`;
         } else if (/iPad|iPhone|iPod/.test(req.get('User-Agent'))) {
             deeplink = `${URLObj.domain}://${baseURL}`;
         } else {
