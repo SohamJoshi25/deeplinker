@@ -19,10 +19,7 @@ const getURL = async (req, res) => {
         let deeplink = "";
         let agent = "UNKNOWN";
         console.log(deepURLObj)//
-        if(!deepURLObj.package){
-            deeplink = deepURLObj.href;
-            agent = "Package Not Found";
-        }else if (/android/i.test(userAgent)) { 
+        if (/android/i.test(userAgent)) { 
             deeplink = deepURLObj.android;
             agent = "ANDROID";
         } else if (/iPad|iPhone|iPod/.test(userAgent)) {
