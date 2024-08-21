@@ -187,6 +187,7 @@ const PackageName = {
 
 const urlConversionPairs = {
     "youtu.be": "www.youtube.com/watch?v=",
+    "youtube.com":"www.youtube.com",
     "amzn.to": "www.amazon.com/",
     "fb.me": "www.facebook.com/",
     "lnkd.in": "www.linkedin.com/",
