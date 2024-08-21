@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title> 
+    <style>
+        body{
+            background-color:azure;
+        }
+        *{
+            text-align: center;
+        }
+        #copy{
+            overflow-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <%if (data.deeplink) { %>
@@ -11,19 +22,30 @@
     <% } else { %>
         <h1>Result</h1>
         <% }  %>
-
+        <br>
+        <br>
     <%if (data.link) { %>
-        <h2 href="<%= data.link %>"><%= data.link %></h2>
+        <h2  id="copy" onclick="copyFunction()"><%= data.link %></h2>
+        <p>Click to copy</p>
     <% } %>
+    <br>
+    <br>
     <%if (data.deeplink) { %>
         <h3>Agent : <%= data.agent %></h3>
         <a id="redirectLink" href="<%= data.deeplink %>"><%= data.deeplink %></a>
     <% }  %>
+    <br>
+    <br>
     <%if (data.message) { %>
-        <h2><%= data.message %></h2>
+        <h3><%= data.message %></h3>
     <% } %>
 
     <script>
+        function copyFunction() {
+            let copyText = document.getElementById("copy");
+            navigator.clipboard.writeText(copyText.innerText);
+            alert("Copied the text: " + copyText.innerText);
+        }
         window.onload = function() {
         setTimeout(function() {
             document.getElementById('redirectLink').click();

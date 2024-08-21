@@ -8,6 +8,7 @@ const app = express();
  
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(__dirname + 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/',router) 
 
@@ -22,3 +23,4 @@ mongoose.connect(process.env.MONGOURI,{
 }).catch((e)=>{
     console.log(e);
 });
+ 

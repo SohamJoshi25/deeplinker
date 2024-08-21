@@ -3,16 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- <link rel="stylesheet" href="styles/style.create.css" type="text/css"> -->
+    <title>DeepLinker | Create</title>
+    <style>
+        body{
+            background-color: azure;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1{
+            text-align: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        form>*{
+            margin: 0.5em;
+            padding: 0.5em;
+        }
+        div>*{
+            margin: 0.5em;
+        }
+        input{
+            width: 120%;
+        }
+        a{
+            background-color: rgb(185, 178, 236);
+            padding: 0.5em;
+            border-radius: 0.5em;
+            box-shadow: inset;
+            text-decoration: none;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h1>CREATE</h1>
-    <a href="/">Home</a>
-    <a href="/delete">Delete</a>
+    <h1>CREATE</h1> 
+    <div>
+        <a href="/">Home</a>
+        <a href="/delete">Delete</a>
+    </div>
+    <br>
     <br>
     <br>
     <form action="/api/" method="post">
-        <input type="link" name="url" id="link" required>
+        <input placeholder="Input URL" type="link" name="url" id="link" required>
         <button type="submit">Submit</button>
     </form>
 
