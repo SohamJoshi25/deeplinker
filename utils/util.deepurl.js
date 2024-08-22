@@ -19,7 +19,6 @@ const deepURL = (orignalurl) => {
 
     let tempurl = orignalurl.startsWith("https://")?orignalurl:"https://"+orignalurl;
     const orignalurlprocressed = tempurl.endsWith('/')?tempurl.substring(0,tempurl.length-1):tempurl;
-    //console.log(orignalurlprocressed)
     let url = convertShortUrl(orignalurlprocressed);
     //console.log(url)
     const URLOBJ = new URL(url);
@@ -33,7 +32,7 @@ const deepURL = (orignalurl) => {
     const result = {
         android:`intent://${hostname+path}#Intent;scheme=https;package=${package};end`,
         ios: `${appname}://${hostname+path}`,
-        href:orignalurl,
+        href:orignalurlprocressed,
         appstore:appstore
     }
     //console.log(result);

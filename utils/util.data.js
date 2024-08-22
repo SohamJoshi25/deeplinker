@@ -1,3 +1,7 @@
+/*
+    PLEASE ENSURE THAT WHEN ADDING PAIRS TO "urlConverionPairs" , ALSO ADD RESPECTIVE HOST NAME TO "AppStoreLinks" AND "PackageName".
+*/
+
 const AppStoreLinks = {
     "www.whatsapp.com": "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
     "www.youtube.com": "https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664",
@@ -200,8 +204,6 @@ const PackageName = {
 
 const urlConversionPairs = {
     "youtu.be/": "www.youtube.com/watch?v=",
-    "reddit.com/":"reddit.app.link/?$android_deeplink_path=",
-    "www.reddit.com/":"reddit.app.link/?$android_deeplink_path=",
     "youtube.com/":"www.youtube.com/",
     "amzn.to/": "www.amazon.com/",
     "fb.me/": "www.facebook.com/",
