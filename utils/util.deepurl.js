@@ -12,13 +12,13 @@ function convertShortUrl(url) {
     return url;
 }
  
-//NOT HANDELLED missing CO-DOMAIN WWW. when db has https://youtube.com :: Handelled for https://youtu.be/dafsf... and https://www.youtube.com/asf..
 const deepURL = (orignalurl) => {
     if(!orignalurl){
         throw new Error("URL Not Found | DeeplURL")
     }
 
     orignalurl = orignalurl.startsWith("https://")?orignalurl:"https://"+orignalurl;
+    orignalurl = orignalurl.endsWith('/')?orignalurl.substring(0,orignalurl.length-1):orignalurl;
     console.log(orignalurl)
     let url = convertShortUrl(orignalurl);
 

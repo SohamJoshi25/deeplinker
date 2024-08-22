@@ -33,6 +33,7 @@ const getURL = async (req, res) => {
         res.render('view.result.ejs', { data : {
             deeplink: deeplink,
             agent: agent,
+            fallback:deepURLObj.href
         }});
 
     } catch (error) {
