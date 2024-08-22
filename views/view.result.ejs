@@ -31,7 +31,7 @@
     <br>
     <br>
     <%if (data.deeplink) { %>
-        <h3>Agent : <%= data.agent %></h3>
+        <h5>Agent : <%= data.agent %></h5>
         <a id="redirectLink" href="<%= data.deeplink %>"><%= data.deeplink %></a>
     <% }  %>
     <br>
@@ -46,11 +46,19 @@
             navigator.clipboard.writeText(copyText.innerText);
             alert("Copied the text: " + copyText.innerText);
         }
-        window.onload = function() {
-        setTimeout(function() {
-            document.getElementById('redirectLink').click();
-        }, 10);
-    };
+        let clicked = false;
+
+        window.addEventListener( "load", function(){
+            if(clicked)return;
+            setTimeout(function() {
+                window.location.href = "<%= data.deeplink %>";
+            }, 10);
+            setTimeout(function() {
+                window.location.replace("<%= data.fallback%>");
+            }, 3000)
+            
+        });
+            
     </script>
 </body>
 </html>
