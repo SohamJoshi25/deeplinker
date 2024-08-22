@@ -19,7 +19,7 @@ const getURL = async (req, res) => {
         let deeplink = "";
         let appstorelink = "";
         let agent = "UNKNOWN";
-        console.log(deepURLObj)//
+        //console.log(deepURLObj)
         if (/android/i.test(userAgent)) { 
             deeplink = deepURLObj.android;
             agent = "ANDROID";

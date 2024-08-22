@@ -16,6 +16,7 @@ const AppStoreLinks = {
     "www.tiktok.com": "https://apps.apple.com/us/app/tiktok/id835599320",
     "www.pinterest.com": "https://apps.apple.com/us/app/pinterest/id429047995",
     "www.reddit.com": "https://apps.apple.com/us/app/reddit/id1064216828",
+    "reddit.app.link":"https://apps.apple.com/us/app/reddit/id1064216828",
     "www.telegram.org": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
     "telegram.org": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
     "www.signal.org": "https://apps.apple.com/us/app/signal-private-messenger/id874139669",
@@ -199,6 +200,8 @@ const PackageName = {
 
 const urlConversionPairs = {
     "youtu.be/": "www.youtube.com/watch?v=",
+    "reddit.com/":"reddit.app.link/?$android_deeplink_path=",
+    "www.reddit.com/":"reddit.app.link/?$android_deeplink_path=",
     "youtube.com/":"www.youtube.com/",
     "amzn.to/": "www.amazon.com/",
     "fb.me/": "www.facebook.com/",
