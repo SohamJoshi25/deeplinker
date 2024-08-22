@@ -30,7 +30,7 @@ const deepURL = (orignalurl) => {
     const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")];
 
     const result = {
-        android: package=='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed,
+        android: package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed,
         ios: `${appname}://${hostname+path}`,
         href:orignalurlprocressed,
         appstore:appstore
