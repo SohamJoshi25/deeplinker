@@ -21,11 +21,11 @@ const deepURL = (orignalurl) => {
     orignalurl = orignalurl.endsWith('/')?orignalurl.substring(0,orignalurl.length-1):orignalurl;
     console.log(orignalurl)
     let url = convertShortUrl(orignalurl);
-
+    console.log(url)
     const URLOBJ = new URL(url);
     const hostname = URLOBJ.hostname;
 
-    const package = PackageName[hostname] || hostname;
+    const package = PackageName[hostname] || PackageName[hostname.replace("www.","")];
     const path = url.substring(URLOBJ.origin.length); 
     const appname = hostname.split('.').length>2?hostname.split('.')[1]:hostname.split('.')[0];
 

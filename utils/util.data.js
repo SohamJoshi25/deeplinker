@@ -188,15 +188,15 @@ const PackageName = {
 }
 
 const urlConversionPairs = {
-    "youtu.be": "www.youtube.com/watch?v=",
-    "youtube.com":"www.youtube.com",
-    "amzn.to": "www.amazon.com/",
-    "fb.me": "www.facebook.com/",
-    "lnkd.in": "www.linkedin.com/",
-    "instagr.am": "www.instagram.com/",
-    "t.co": "twitter.com/",
-    "pin.it": "www.pinterest.com/pin/",
-    "wp.me": "www.wordpress.com/",
+    "youtu.be/": "www.youtube.com/watch?v=",
+    "youtube.com/":"www.youtube.com/",
+    "amzn.to/": "www.amazon.com/",
+    "fb.me/": "www.facebook.com/",
+    "lnkd.in/": "www.linkedin.com/",
+    "instagr.am/": "www.instagram.com/",
+    "t.co/": "twitter.com/",
+    "pin.it/": "www.pinterest.com/pin/",
+    "wp.me/": "www.wordpress.com/",
 }
 
 
