@@ -17,11 +17,10 @@ const deepURL = (orignalurl) => {
         throw new Error("URL Not Found | DeeplURL")
     }
 
-    orignalurl = orignalurl.startsWith("https://")?orignalurl:"https://"+orignalurl;
-    orignalurl = orignalurl.endsWith('/')?orignalurl.substring(0,orignalurl.length-1):orignalurl;
-    console.log(orignalurl)
-    let url = convertShortUrl(orignalurl);
-    console.log(url)
+    let tempurl = orignalurl.startsWith("https://")?orignalurl:"https://"+orignalurl;
+    const orignalurlprocressed = tempurl.endsWith('/')?tempurl.substring(0,tempurl.length-1):tempurl;
+    let url = convertShortUrl(orignalurlprocressed);
+    //console.log(url)
     const URLOBJ = new URL(url);
     const hostname = URLOBJ.hostname;
 
@@ -33,10 +32,10 @@ const deepURL = (orignalurl) => {
     const result = {
         android:`intent://${hostname+path}#Intent;scheme=https;package=${package};end`,
         ios: `${appname}://${hostname+path}`,
-        href:url,
+        href:orignalurlprocressed,
         appstore:appstore
     }
-    console.log(result);
+    //console.log(result);
     return result;
 }
  

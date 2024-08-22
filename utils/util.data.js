@@ -1,3 +1,7 @@
+/*
+    PLEASE ENSURE THAT WHEN ADDING PAIRS TO "urlConverionPairs" , ALSO ADD RESPECTIVE HOST NAME TO "AppStoreLinks" AND "PackageName".
+*/
+
 const AppStoreLinks = {
     "www.whatsapp.com": "https://apps.apple.com/us/app/whatsapp-messenger/id310633997",
     "www.youtube.com": "https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664",
@@ -16,6 +20,7 @@ const AppStoreLinks = {
     "www.tiktok.com": "https://apps.apple.com/us/app/tiktok/id835599320",
     "www.pinterest.com": "https://apps.apple.com/us/app/pinterest/id429047995",
     "www.reddit.com": "https://apps.apple.com/us/app/reddit/id1064216828",
+    "reddit.app.link":"https://apps.apple.com/us/app/reddit/id1064216828",
     "www.telegram.org": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
     "telegram.org": "https://apps.apple.com/us/app/telegram-messenger/id686449807",
     "www.signal.org": "https://apps.apple.com/us/app/signal-private-messenger/id874139669",
