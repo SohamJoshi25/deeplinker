@@ -104,8 +104,8 @@ const AppStoreLinks = {
 
 
 const PackageName = {
-    "www.google.com":"com.google.android.googlequicksearchbox",
-    "google.com":"com.google.android.googlequicksearchbox",
+    "www.google.com":"notaplicable",
+    "google.com":"notaplicable",
     "www.whatsapp.com": "com.whatsapp",
     "www.youtube.com": "com.google.android.youtube",
     "youtu.be": "com.google.android.youtube",
