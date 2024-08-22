@@ -17,6 +17,7 @@ const getURL = async (req, res) => {
         const deepURLObj = deepURL(link.URL);
         const userAgent = req.get('User-Agent');
         let deeplink = "";
+        let appstorelink = "";
         let agent = "UNKNOWN";
         console.log(deepURLObj)//
         if (/android/i.test(userAgent)) { 
@@ -25,6 +26,7 @@ const getURL = async (req, res) => {
         } else if (/iPad|iPhone|iPod/.test(userAgent)) {
             deeplink = deepURLObj.ios;
             agent = "IOS";
+            appstorelink = deepURLObj.appstore
         } else {
             deeplink = deepURLObj.href;
             agent = "DESKTOP";
@@ -33,7 +35,7 @@ const getURL = async (req, res) => {
         res.render('view.result.ejs', { data : {
             deeplink: deeplink,
             agent: agent,
-            fallback:deepURLObj.href
+            fallback: appstorelink || deepURLObj.href
         }});
 
     } catch (error) {

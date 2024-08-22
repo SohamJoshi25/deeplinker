@@ -1,4 +1,4 @@
-const {Packages,PackageName,urlConversionPairs}= require("./util.data.js");
+const {AppStoreLinks,PackageName,urlConversionPairs}= require("./util.data.js");
 const { URL } = require('url');
 
 
@@ -25,15 +25,16 @@ const deepURL = (orignalurl) => {
     const URLOBJ = new URL(url);
     const hostname = URLOBJ.hostname;
 
-    const package = PackageName[hostname] || PackageName[hostname.replace("www.","")];
+    const package = PackageName[hostname] || PackageName[hostname.replace("www.","")] || "com.android.vending";
     const path = url.substring(URLOBJ.origin.length); 
     const appname = hostname.split('.').length>2?hostname.split('.')[1]:hostname.split('.')[0];
-
+    const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")];
 
     const result = {
         android:`intent://${hostname+path}#Intent;scheme=https;package=${package};end`,
         ios: `${appname}://${hostname+path}`,
-        href:url
+        href:url,
+        appstore:appstore
     }
     console.log(result);
     return result;
