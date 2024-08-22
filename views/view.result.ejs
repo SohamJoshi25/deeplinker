@@ -14,6 +14,9 @@
         #copy,#redirectLink{
             overflow-wrap: break-word;
         }
+        #redirectLink{
+            font-size: x-small;
+        }
     </style>
 </head>
 <body>
@@ -56,7 +59,7 @@
                 }, 10);
                 setTimeout(function() {
                     window.location.replace("<%= data.fallback%>");
-                }, 3000)
+                }, 1000)
             }
         });
             
