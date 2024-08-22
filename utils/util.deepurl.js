@@ -35,7 +35,7 @@ const deepURL = (orignalurl) => {
         href:orignalurlprocressed,
         appstore:appstore
     }
-    //console.log(result);
+    console.log(result);
     return result;
 }
  
