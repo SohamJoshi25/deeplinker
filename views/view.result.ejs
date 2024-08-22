@@ -47,16 +47,17 @@
             alert("Copied the text: " + copyText.innerText);
         }
         let clicked = false;
-
+        
         window.addEventListener( "load", function(){
             if(clicked)return;
-            setTimeout(function() {
-                window.location.href = "<%= data.deeplink %>";
-            }, 10);
-            setTimeout(function() {
-                window.location.replace("<%= data.fallback%>");
-            }, 3000)
-            
+            if("<%= data.deeplink %>"){
+                setTimeout(function() {
+                    window.location.href = "<%= data.deeplink %>";
+                }, 10);
+                setTimeout(function() {
+                    window.location.replace("<%= data.fallback%>");
+                }, 3000)
+            }
         });
             
     </script>
