@@ -96,4 +96,22 @@ const deleteURL = async (req, res) => {
     }
 };
 
-module.exports = { getURL, addURL, deleteURL };
+const getAllUrl = async (req, res) => {
+    try {
+        const allURL = await linkModel.find({});
+        if (!allURL || allURL.length === 0) {
+            return res.status(404).json({ message: 'URL not found' });
+        }
+
+        res.json({
+            message: "URLs fetched successfully",
+            data: allURL
+        });
+
+    } catch (error) {
+        console.error('Error fetching URLs:', error);
+        res.status(500).json({ message: 'An error occurred while processing all URLs' });
+    }
+};
+
+module.exports = { getURL, addURL, deleteURL, getAllUrl };
