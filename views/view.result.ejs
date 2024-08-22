@@ -46,11 +46,19 @@
             navigator.clipboard.writeText(copyText.innerText);
             alert("Copied the text: " + copyText.innerText);
         }
-        window.onload = function() {
-        setTimeout(function() {
-            document.getElementById('redirectLink').click();
-        }, 10);
-    };
+        let clicked = false;
+
+        window.addEventListener( "load", function(){
+            if(clicked)return;
+            setTimeout(function() {
+                window.location.href = "<%= data.deeplink %>";
+            }, 10);
+            setTimeout(function() {
+                window.location.replace("<%= data.fallback%>");
+            }, 3000)
+            
+        });
+            
     </script>
 </body>
 </html>
