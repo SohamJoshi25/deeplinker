@@ -17,6 +17,11 @@
         #redirectLink{
             font-size: x-small;
         }
+        button{
+            padding: 1em;
+            border-radius: 1em;
+            background-color: rgb(255, 238, 243);
+        }
     </style>
 </head>
 <body>
@@ -35,7 +40,11 @@
     <br>
     <%if (data.deeplink) { %>
         <h5>Agent : <%= data.agent %></h5>
-        <a id="redirectLink" href="<%= data.deeplink %>"><%= data.deeplink %></a>
+        <a id="redirectLink" href="<%= data.deeplink %>">
+            <button>
+                Click To open APP
+            </button>
+        </a>
     <% }  %>
     <br>
     <br>
@@ -65,7 +74,7 @@
                 setTimeout(function() {
                    //32 if(document.window.hasFocus())
                     window.location.replace("<%= data.fallback%>");
-                }, 3000)
+                }, 4000)
             }
         });
             
