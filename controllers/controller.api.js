@@ -24,7 +24,7 @@ const getURL = async (req, res) => {
             deeplink = deepURLObj.android;
             agent = "ANDROID";
         } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-            deeplink = deepURLObj.ios;
+            deeplink = deepURLObj.href;
             agent = "IOS";
             appstorelink = deepURLObj.appstore
         } else {
