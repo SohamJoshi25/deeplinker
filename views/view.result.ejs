@@ -65,16 +65,15 @@
             if("<%= data.deeplink %>"){
                 setTimeout(function() {
                     if("<%=data.agent%>"=="IOS"){
-                        document.getElementById("redirectLink").click();
++                        window.location.replace("<%= data.deeplink %>");
                     }else{
                         window.location.href = "<%= data.deeplink %>";
                     }
-                    
                 }, 10);
+
                 setTimeout(function() {
-                   //32 if(document.window.hasFocus())
                     window.location.replace("<%= data.fallback%>");
-                }, 4000)
+                }, 4000);
             }
         });
             
