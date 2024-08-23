@@ -56,7 +56,7 @@
             if("<%= data.deeplink %>"){
                 setTimeout(function() {
                     if("<%=data.agent%>"=="IOS"){
-                        document.getElementById('redirectLink').click();
+                        window.location.replace = "<%= data.deeplink %>";
                     }else{
                         window.location.href = "<%= data.deeplink %>";
                     }
