@@ -123,6 +123,7 @@ const PackageName = {
     "www.tiktok.com": "com.zhiliaoapp.musically",
     "www.pinterest.com": "com.pinterest",
     "www.reddit.com": "com.reddit.frontpage",
+    "reddit.app.link": "com.reddit.frontpage",
     "www.telegram.org": "org.telegram.messenger",
     "telegram.org": "org.telegram.messenger",
     "www.signal.org": "org.thoughtcrime.securesms",
@@ -206,7 +207,9 @@ const PackageName = {
 
 const urlConversionPairs = {
     "youtu.be/": "www.youtube.com/watch?v=",
+    "reddit.com/":"reddit.app.link/?$android_deep_path=",
     "youtube.com/":"www.youtube.com/",
+    "www.reddit.com/":"reddit.app.link/?$android_deep_path=",
     "amzn.to/": "www.amazon.com/",
     "fb.me/": "www.facebook.com/",
     "lnkd.in/": "www.linkedin.com/",
