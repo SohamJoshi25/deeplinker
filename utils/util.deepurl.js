@@ -45,12 +45,12 @@ const deepURL = (orignalurl) => {
 
     const result = {
         android:android_deep_link,
-        ios: `${appname}://${hostname+path}`,
+        ios: `${appname}://${hostname+path}`.split("?")[0],
         href:orignalurlprocressed,
         appstore:appstore
     }
     console.log(result);
-    return result;
+    return result; 
 }
  
 module.exports = deepURL;
