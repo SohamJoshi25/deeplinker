@@ -52,7 +52,7 @@
         <h3><%= data.message %></h3>
     <% } %>
 
-    <script>
+    <script defer>
         function copyFunction() {
             let copyText = document.getElementById("copy");
             navigator.clipboard.writeText(copyText.innerText);
@@ -63,16 +63,23 @@
         window.addEventListener( "load", function(){
             if(clicked)return;
             if("<%= data.deeplink %>"){
+
                 setTimeout(function() {
                     if("<%=data.agent%>"=="IOS"){
 +                        window.location.replace("<%= data.deeplink %>");
                     }else{
-                        window.location.href = "<%= data.deeplink %>";
+                        window.location.replace = "<%= data.deeplink %>";
                     }
                 }, 10);
 
                 setTimeout(function() {
-                    window.location.replace("<%= data.fallback%>");
+                    if("<%=data.agent%>"=="IOS"){
+                        const client = "<%= data.appStoreCode %>"[Intl.DateTimeFormat().resolvedOptions().timeZone] || "us";
+                        const appLink =  "<%= data.fallback %>";
++                       window.location.replace(appLink.replace("/in/","/"+client+"/"));
+                    }else{
+                        window.location.replace = "<%= data.fallback %>";
+                    }
                 }, 4000);
             }
         });

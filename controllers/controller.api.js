@@ -1,5 +1,6 @@
 const deepURL = require("../utils/util.deepurl.js")
 const generateURL = require("../utils/util.generateurl.js")
+const {timeZoneCountryMapping} = require("../utils/util.data.js")
 const linkModel = require("../models/model.link.js");
 
 const getURL = async (req, res) => {
@@ -24,7 +25,7 @@ const getURL = async (req, res) => {
             deeplink = deepURLObj.android;
             agent = "ANDROID";
         } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-            deeplink = deepURLObj.href;
+            deeplink = deepURLObj.ios;
             agent = "IOS";
             appstorelink = deepURLObj.appstore
         } else {
@@ -35,7 +36,9 @@ const getURL = async (req, res) => {
         res.render('view.result.ejs', { data : {
             deeplink: deeplink,
             agent: agent,
-            fallback: appstorelink || deepURLObj.href
+            fallback: appstorelink || deepURLObj.href,
+            appStoreCode:timeZoneCountryMapping
+
         }});
 
     } catch (error) {
