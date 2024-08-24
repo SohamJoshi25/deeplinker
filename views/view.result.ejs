@@ -59,6 +59,7 @@
 			}
 
 			if ("<%= data.deeplink %>") {
+
 				setTimeout(function () {
 					if ("<%=data.agent%>" == "IOS") {
 						const client =
@@ -66,19 +67,17 @@
 								Intl.DateTimeFormat().resolvedOptions().timeZone
 							] || "us";
 						const appLink = "<%= data.fallback %>";
-						+window.location.replace(
+						window.location.replace(
 							appLink.replace("/in/", "/" + client + "/")
 						);
 					} else {
-						window.location.replace = "<%= data.fallback %>";
+						window.location.replace("<%= data.fallback %>");
 					}
 				}, 4000);
 
-				if ("<%=data.agent%>" == "IOS") {
-					+window.location.href("<%= data.deeplink %>");
-				} else {
-					window.location.href = "<%= data.deeplink %>";
-				}
+				
+				window.location.replace("<%= data.deeplink %>");
+				
 			}
 		</script>
 	</body>
