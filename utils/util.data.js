@@ -123,6 +123,7 @@ const PackageName = {
     "www.tiktok.com": "com.zhiliaoapp.musically",
     "www.pinterest.com": "com.pinterest",
     "www.reddit.com": "com.reddit.frontpage",
+    "reddit.app.link": "com.reddit.frontpage",
     "www.telegram.org": "org.telegram.messenger",
     "telegram.org": "org.telegram.messenger",
     "www.signal.org": "org.thoughtcrime.securesms",
@@ -447,5 +448,9 @@ const timeZoneCountryMapping = {
     "Pacific/Wake": "us",
     "Pacific/Wallis": "wf"
   };
+
+  const specialConversionPairs = {
+    "intent://www.reddit.com/":"https://reddit.app.link/?$android_deeplink_path=reddit/",
+  }
   
-module.exports = {AppStoreLinks,PackageName,urlConversionPairs,timeZoneCountryMapping}
+module.exports = {AppStoreLinks,PackageName,urlConversionPairs,timeZoneCountryMapping,specialConversionPairs}
