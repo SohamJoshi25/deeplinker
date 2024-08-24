@@ -50,7 +50,7 @@ const deepURL = (orignalurl) => {
         appstore:appstore
     }
     console.log(result);
-    return result;
+    return result; 
 }
  
 module.exports = deepURL;
