@@ -207,9 +207,7 @@ const PackageName = {
 
 const urlConversionPairs = {
     "youtu.be/": "www.youtube.com/watch?v=",
-    "reddit.com/":"reddit.app.link/?$android_deep_path=",
     "youtube.com/":"www.youtube.com/",
-    "www.reddit.com/":"reddit.app.link/?$android_deep_path=",
     "amzn.to/": "www.amazon.com/",
     "fb.me/": "www.facebook.com/",
     "lnkd.in/": "www.linkedin.com/",
@@ -450,5 +448,9 @@ const timeZoneCountryMapping = {
     "Pacific/Wake": "us",
     "Pacific/Wallis": "wf"
   };
+
+  const specialConversionPairs = {
+    "intent://www.reddit.com/":"https://reddit.app.link/?$android_deeplink_path=reddit/",
+  }
   
-module.exports = {AppStoreLinks,PackageName,urlConversionPairs,timeZoneCountryMapping}
+module.exports = {AppStoreLinks,PackageName,urlConversionPairs,timeZoneCountryMapping,specialConversionPairs}
