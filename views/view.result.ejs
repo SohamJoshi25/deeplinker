@@ -58,20 +58,11 @@
             navigator.clipboard.writeText(copyText.innerText);
             alert("Copied the text: " + copyText.innerText);
         }
-        let clicked = false;
         
         window.addEventListener( "load", function(){
-            if(clicked)return;
             if("<%= data.deeplink %>"){
 
-                setTimeout(function() {
-                    if("<%=data.agent%>"=="IOS"){
-+                        window.location.replace("<%= data.deeplink %>");
-                    }else{
-                        window.location.replace = "<%= data.deeplink %>";
-                    }
-                }, 10);
-
+            
                 setTimeout(function() {
                     if("<%=data.agent%>"=="IOS"){
                         const client = "<%= data.appStoreCode %>"[Intl.DateTimeFormat().resolvedOptions().timeZone] || "us";
@@ -81,6 +72,13 @@
                         window.location.replace = "<%= data.fallback %>";
                     }
                 }, 4000);
+
+                if("<%=data.agent%>"=="IOS"){
++                   window.location.replace("<%= data.deeplink %>");
+                }else{
+                    window.location.replace = "<%= data.deeplink %>";
+                }
+                
             }
         });
             
