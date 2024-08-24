@@ -28,9 +28,9 @@ const deepURL = (orignalurl) => {
     const path = url.substring(URLOBJ.origin.length); 
     const appname = hostname.split('.').length>2?hostname.split('.')[1]:hostname.split('.')[0];
     const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")];
-
+    const fallback = "S.browser_fallback_url=https://play.google.com/store/apps/details?id="+package;
     const result = {
-        android: package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed,
+        android: package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};${fallback?fallback:""};end`:orignalurlprocressed,
         ios: `${appname}://${hostname+path}`,
         href:orignalurlprocressed,
         appstore:appstore
