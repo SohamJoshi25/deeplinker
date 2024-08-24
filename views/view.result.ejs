@@ -75,9 +75,9 @@
 				}, 4000);
 
 				if ("<%=data.agent%>" == "IOS") {
-					+window.location.replace("<%= data.deeplink %>");
+					+window.location.href("<%= data.deeplink %>");
 				} else {
-					window.location.replace = "<%= data.deeplink %>";
+					window.location.href = "<%= data.deeplink %>";
 				}
 			}
 		</script>
