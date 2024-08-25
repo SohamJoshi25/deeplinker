@@ -75,13 +75,9 @@
 					setTimeout(function () {
 						//FOR IOS Users
 						if ("<%=data.agent%>" == "IOS") {
-							if("<%= data.appStore%>"){
-								const client ="<%= data.appStoreCode %>"[Intl.DateTimeFormat().resolvedOptions().timeZone] || "us";
-								const appLink = "<%= data.appStore %>";
-								window.location.replace(appLink.replace("/in/", "/" + client + "/"));
-							}else{
+						
 								window.location.replace("<%= data.fallback %>");
-							}
+							
 						} else {//For Android users
 							if("<%=data.playstoreDeepLink%>"){
 								window.location.href = "<%= data.playstoreDeepLink %>";

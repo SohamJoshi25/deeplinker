@@ -41,11 +41,11 @@ const deepURL = (orignalurl) => {
 
     let appname = hostname.split('.').length>2?hostname.split('.')[1]:hostname.split('.')[0];
     appname=="app"?appname='reddit':appname;
-    let ios_deep_link = `${appname}://${hostname+path}`.split("?")[0];
+    let ios_deep_link = `${appname}://${path.startsWith('/')?path.substring(1):path}`;
    
     let android_deep_link = package?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed
     android_deep_link = convertSpecialUrl(android_deep_link);
-    let playstoreDeepLink = package?`intent://details?id=${package}#Intent;scheme=market;package=com.android.vending;end`:""
+    let playstoreDeepLink = package?`intent://details?id=${package}#Intent;scheme=market;package=com.android.vending;end`:"";
 
     const result = {
         android:android_deep_link,
