@@ -40,7 +40,7 @@ const deepURL = (orignalurl) => {
     appname=="app"?appname='reddit':appname;
     const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")];
     const fallback = "S.browser_fallback_url=https://play.google.com/store/apps/details?id="+package;
-    let android_deep_link = package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};${fallback?fallback:""};end`:orignalurlprocressed
+    let android_deep_link = package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed
     android_deep_link = convertSpecialUrl(android_deep_link);
 
     const result = {
