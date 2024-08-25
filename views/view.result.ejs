@@ -60,25 +60,53 @@
 
 			if ("<%= data.deeplink %>") {
 
-				setTimeout(function () {
-					if ("<%=data.agent%>" == "IOS") {
-						const client =
-							"<%= data.appStoreCode %>"[
-								Intl.DateTimeFormat().resolvedOptions().timeZone
-							] || "us";
-						const appLink = "<%= data.fallback %>";
-						window.location.replace(
-							appLink.replace("/in/", "/" + client + "/")
-						);
+				let isVisible = true;
+				document.addEventListener('visibilitychange', function() {
+					if (document.visibilityState === 'visible') {
+						isVisible = true;
 					} else {
+						isVisible = false;
+					}
+				});
+
+				//store fallback only if not desktop
+				if("<%=data.agent%>" != "DESKTOP"){
+					console.log("store registered")
+					setTimeout(function () {
+						//FOR IOS Users
+						if ("<%=data.agent%>" == "IOS") {
+							if("<%= data.appStore%>"){
+								const client ="<%= data.appStoreCode %>"[Intl.DateTimeFormat().resolvedOptions().timeZone] || "us";
+								const appLink = "<%= data.appStore %>";
+								window.location.replace(appLink.replace("/in/", "/" + client + "/"));
+							}else{
+								window.location.replace("<%= data.fallback %>");
+							}
+						} else {//For Android users
+							if("<%=data.playstoreDeepLink%>"){
+								window.location.href = "<%= data.playstoreDeepLink %>";
+							}else if("<%=data.playstore%>"){
+								window.location.replace("<%= data.playstore %>");
+							}else{
+								window.location.replace("<%= data.fallback %>");
+							}
+						}
+					}, 1200);
+				}
+
+				//orignal url fallback
+				console.log("fallback registered")
+				setTimeout(function () {
+					if (isVisible) {
+						console.log("fallback exectued")
 						window.location.replace("<%= data.fallback %>");
 					}
-				}, 2000);
+				}, 4000);
 
-				
-				window.location.replace("<%= data.deeplink %>");
-                window.location.href = "<%= data.deeplink %>";
-				
+				//orignal deeplink 
+				console.log("orignal Tried")
+				//window.location.replace("<%= data.deeplink %>");
+				window.location.href = "<%= data.deeplink %>";
 			}
 		</script>
 	</body>

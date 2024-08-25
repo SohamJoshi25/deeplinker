@@ -34,20 +34,26 @@ const deepURL = (orignalurl) => {
     const URLOBJ = new URL(url);
     const hostname = URLOBJ.hostname;
 
-    const package = PackageName[hostname] || PackageName[hostname.replace("www.","")] || "com.android.vending";
+    const package = PackageName[hostname] || PackageName[hostname.replace("www.","")] || "";
+    const playstore = package?"https://play.google.com/store/apps/details?id="+package:"";
+    const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")] || "";
     const path = url.substring(URLOBJ.origin.length); 
+
     let appname = hostname.split('.').length>2?hostname.split('.')[1]:hostname.split('.')[0];
     appname=="app"?appname='reddit':appname;
-    const appstore = AppStoreLinks[hostname] || AppStoreLinks[hostname.replace("www.","")];
-    const fallback = "S.browser_fallback_url=https://play.google.com/store/apps/details?id="+package;
-    let android_deep_link = package!='notaplicable'?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed
+    let ios_deep_link = `${appname}://${hostname+path}`.split("?")[0];
+   
+    let android_deep_link = package?`intent://${hostname+path}#Intent;scheme=https;package=${package};end`:orignalurlprocressed
     android_deep_link = convertSpecialUrl(android_deep_link);
+    let playstoreDeepLink = package?`intent://details?id=${package}#Intent;scheme=market;package=com.android.vending;end`:""
 
     const result = {
         android:android_deep_link,
-        ios: `${appname}://${hostname+path}`.split("?")[0],
+        ios:ios_deep_link,
         href:orignalurlprocressed,
-        appstore:appstore
+        appstore:appstore,
+        playstore: playstore,
+        playstoreDeepLink:playstoreDeepLink
     }
     console.log(result);
     return result; 
