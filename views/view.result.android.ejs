@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DeepLinker | Redirecting</title>
+		<style>
+			body {
+				background-color: rgba(241, 255, 255, 0.955);
+			}
+			* {
+				text-align: center;
+			}
+			#redirectLink {
+				overflow-wrap: break-word;
+			}
+			button {
+				padding: 1em;
+				border-radius: 1em;
+				background-color: rgb(255, 255, 255);
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Redirecting</h1>
+		<br />
+		<br />
+		<br />
+		<%if (data.deepLink) { %>
+			<h5>Agent : Android</h5>
+			<br />
+			<a href="<%= data.deepLink %>">
+				<button>Click To open APP</button>
+			</a>
+		<% } %>
+
+		<script>
+			if("<%=data.specialLink%>"){
+				window.location.replace("<%=data.specialLink%>");
+				window.location.href = "<%=data.specialLink%>";
+			}
+			setTimeout(()=>{
+				window.location.replace("<%=data.href%>");
+				window.location.href = "<%=data.href%>";
+			},6000);
+			setTimeout(()=>{
+				window.location.replace("<%=data.playstore%>");
+				window.location.href = "<%=data.playstore%>";
+			},4000);
+			setTimeout(()=>{
+				window.location.replace("<%=data.playstoreDeepLink%>");
+				window.location.href = "<%=data.playstoreDeepLink%>";
+			},2000);
+			window.location.replace("<%=data.deepLink%>");
+			window.location.href = "<%=data.deepLink%>";
+		</script>
+	</body>
+</html>
