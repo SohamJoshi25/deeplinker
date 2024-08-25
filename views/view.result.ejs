@@ -75,9 +75,7 @@
 					setTimeout(function () {
 						//FOR IOS Users
 						if ("<%=data.agent%>" == "IOS") {
-						
-								window.location.replace("<%= data.fallback %>");
-							
+							window.location.replace("<%= data.fallback %>");		
 						} else {//For Android users
 							if("<%=data.playstoreDeepLink%>"){
 								window.location.href = "<%= data.playstoreDeepLink %>";
@@ -90,18 +88,12 @@
 					}, 2200);
 				}
 
-				//orignal url fallback
-				console.log("fallback registered")
-				setTimeout(function () {
-					if (isVisible) {
-						console.log("fallback exectued")
-						window.location.replace("<%= data.fallback %>");
-					}
-				}, 4000);
+				
+				
 
 				//orignal deeplink 
 				console.log("orignal Tried")
-				//window.location.replace("<%= data.deeplink %>");
+				if("<%=data.agent%>" != "IOS")
 				window.location.href = "<%= data.deeplink %>";
 			}
 		</script>
