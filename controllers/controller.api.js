@@ -18,8 +18,8 @@ const getURL = async (req, res) => {
         const deepURLObj = deepURL(link.URL);
         const userAgent = req.get('User-Agent');
         let deeplink = "";
-        let appstorelink = "";
-        let agent = "UNKNOWN";
+        let browser = userAgent.includes('Instagram') ? "instagram" : userAgent.includes('Facebook') ? "facebook" : "unknown" ;
+        let agent = "unknown";
         //console.log(deepURLObj)
         if (/android/i.test(userAgent)) { 
             deeplink = deepURLObj.android;
@@ -27,7 +27,6 @@ const getURL = async (req, res) => {
         } else if (/iPad|iPhone|iPod/.test(userAgent)) {
             deeplink = deepURLObj.ios;
             agent = "IOS";
-            appstorelink = deepURLObj.appstore
         } else {
             deeplink = deepURLObj.href;
             agent = "DESKTOP";
@@ -36,9 +35,12 @@ const getURL = async (req, res) => {
         res.render('view.result.ejs', { data : {
             deeplink: deeplink,
             agent: agent,
-            fallback: appstorelink || deepURLObj.href,
-            appStoreCode:timeZoneCountryMapping
-
+            browser:browser,
+            fallback: deepURLObj.href,
+            appStore: deepURLObj.appstore,
+            playStore: deepURLObj.playstore,
+            appStoreCode:timeZoneCountryMapping,
+            playstoreDeepLink:deepURLObj.playstoreDeepLink
         }});
 
     } catch (error) {
