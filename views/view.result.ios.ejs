@@ -41,15 +41,15 @@
 			}
 			setTimeout(()=>{
 				window.location.replace("<%=data.href%>");
-				window.location.href = "<%=data.href%>";
+				//window.location.href = "<%=data.href%>";
 			},4000);
 			setTimeout(()=>{
 				const countryCode = data.timeZoneCountryMapping[Intl.DateTimeFormat().resolvedOptions().timeZone];
 				const appstore = "<%=data.appstore%>".replace("/in/",`/${countryCode}/`);
 				window.location.replace(appstore);
-				window.location.href = appstore;
+				//window.location.href = appstore;
 			},2000);
-			window.location.replace("<%=data.deepLink%>");
+			//window.location.replace("<%=data.deepLink%>");
 			window.location.href = "<%=data.deepLink%>";
 		</script>
 	</body>
