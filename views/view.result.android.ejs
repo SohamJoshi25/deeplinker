@@ -58,14 +58,14 @@
 			},4000);
 			setTimeout(()=>{
 				if(isVisible){
-					if("<%=data.playstoreDeepLink%>"){
+					if("<%=data.playstore%>"){
+						window.location.replace("<%=data.playstore%>");
+					}else{
 						//window.location.replace("<%=data.playstoreDeepLink%>");
 						window.location.href = "<%=data.playstoreDeepLink%>";
-					}else{
-						window.location.replace("<%=data.playstore%>");
 					}
 				}
-			},2000);
+			},3000);
 			//window.location.replace("<%=data.deepLink%>");
 			window.location.href = "<%=data.deepLink%>";
 		</script>

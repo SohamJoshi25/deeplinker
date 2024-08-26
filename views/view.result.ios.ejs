@@ -35,6 +35,14 @@
 		<% } %>
 
 		<script>
+			let isVisible = true;
+			document.addEventListener('visibilitychange', function() {
+				if (document.visibilityState === 'visible') {
+					isVisible = true;
+				} else {
+					isVisible = false;
+				}
+			});
 			if("<%=data.specialLink%>"){
 				window.location.replace("<%=data.specialLink%>");
 				window.location.href = "<%=data.specialLink%>";
@@ -52,5 +60,6 @@
 			//window.location.replace("<%=data.deepLink%>");
 			window.location.href = "<%=data.deepLink%>";
 		</script>
+
 	</body>
 </html>
