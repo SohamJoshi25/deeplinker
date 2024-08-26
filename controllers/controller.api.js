@@ -14,7 +14,7 @@ const getURL = async (req, res) => {
         if (!link) {
             return res.status(404).send('URL Not Found');
         }
-        console.log(link)
+        //console.log(link)
 
         const preprocressedURL = preProcress(link.URL);
         const userAgent = req.get('User-Agent');
@@ -31,7 +31,7 @@ const getURL = async (req, res) => {
 
             const data = procressIos(preprocressedURL);
             data.browser = browser;
-            console.log(data);
+            //console.log(data);
             res.render('view.result.ios.ejs', { data } );
 
         } else {
