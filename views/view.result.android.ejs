@@ -35,17 +35,19 @@
 		<% } %>
 
 		<script>
-			var isVisible = true;
-				document.addEventListener('visibilitychange', function() {
-					if (document.visibilityState === 'visible') {
-						isVisible = true;
-					} else {
-						isVisible = false;
-					}
-				});
+			
 		</script>
 
 		<script>
+			let isVisible = true;
+			document.addEventListener('visibilitychange', function() {
+				if (document.visibilityState === 'visible') {
+					isVisible = true;
+				} else {
+					isVisible = false;
+				}
+			});
+
 			if("<%=data.specialLink%>"){
 				window.location.replace("<%=data.specialLink%>");
 				window.location.href = "<%=data.specialLink%>";
@@ -53,17 +55,15 @@
 			setTimeout(()=>{
 				window.location.replace("<%=data.href%>");
 				//window.location.href = "<%=data.href%>";
-			},6000);
-			setTimeout(()=>{
-				if(isVisible){
-					window.location.replace("<%=data.playstore%>");
-					//window.location.href = "<%=data.playstore%>";
-				}
 			},4000);
 			setTimeout(()=>{
 				if(isVisible){
-					//window.location.replace("<%=data.playstoreDeepLink%>");
-					window.location.href = "<%=data.playstoreDeepLink%>";
+					if("<%=data.playstoreDeepLink%>"){
+						//window.location.replace("<%=data.playstoreDeepLink%>");
+						window.location.href = "<%=data.playstoreDeepLink%>";
+					}else{
+						window.location.replace("<%=data.playstore%>");
+					}
 				}
 			},2000);
 			//window.location.replace("<%=data.deepLink%>");
