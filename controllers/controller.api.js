@@ -1,6 +1,6 @@
-const deepURL = require("../utils/util.deepurl.js")
 const generateURL = require("../utils/util.generateurl.js")
-const {timeZoneCountryMapping} = require("../utils/util.data.js")
+const {preProcress} = require("../utils/util.preprocressing.js")
+const {procressAndroid,procressIos} = require("../utils/util.procressing.js")
 const linkModel = require("../models/model.link.js");
 
 const getURL = async (req, res) => {
@@ -14,34 +14,32 @@ const getURL = async (req, res) => {
         if (!link) {
             return res.status(404).send('URL Not Found');
         }
+        //console.log(link)
 
-        const deepURLObj = deepURL(link.URL);
+        const preprocressedURL = preProcress(link.URL);
         const userAgent = req.get('User-Agent');
-        let deeplink = "";
-        let browser = userAgent.includes('Instagram') ? "instagram" : userAgent.includes('Facebook') ? "facebook" : "unknown" ;
-        let agent = "unknown";
-        //console.log(deepURLObj)
-        if (/android/i.test(userAgent)) { 
-            deeplink = deepURLObj.android;
-            agent = "ANDROID";
-        } else if (/iPad|iPhone|iPod/.test(userAgent)) {
-            deeplink = deepURLObj.ios;
-            agent = "IOS";
-        } else {
-            deeplink = deepURLObj.href;
-            agent = "DESKTOP";
-        }
+        let browser = userAgent.includes('Instagram') ? "instagram" : userAgent.includes('Facebook') ? "facebook" : "other" ;
 
-        res.render('view.result.ejs', { data : {
-            deeplink: deeplink,
-            agent: agent,
-            browser:browser,
-            fallback: deepURLObj.href,
-            appStore: deepURLObj.appstore,
-            playStore: deepURLObj.playstore,
-            appStoreCode:timeZoneCountryMapping,
-            playstoreDeepLink:deepURLObj.playstoreDeepLink
-        }});
+        if (/android/i.test(userAgent)) { 
+
+            const data = procressAndroid(preprocressedURL);
+            data.browser = browser;
+            //console.log(data);
+            res.render('view.result.android.ejs', { data } );
+            
+        } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+
+            const data = procressIos(preprocressedURL);
+            data.browser = browser;
+            //console.log(data);
+            res.render('view.result.ios.ejs', { data } );
+
+        } else {
+            res.render('view.result.desktop.ejs', { data : {
+                href:preprocressedURL
+            }});
+
+        }
 
     } catch (error) {
         console.error('Error processing URL:', error);

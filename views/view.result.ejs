@@ -6,107 +6,41 @@
 		<title>DeepLinker</title>
 		<style>
 			body {
-				background-color: rgba(241, 255, 255, 0.955);
+				background-color: rgba(242, 254, 254, 0.955);
 			}
 			* {
 				text-align: center;
 			}
-			#copy,
-			#redirectLink {
+			#copy{
 				overflow-wrap: break-word;
-			}
-			#redirectLink {
-				font-size: x-small;
 			}
 			button {
 				padding: 1em;
 				border-radius: 1em;
-				background-color: rgb(255, 238, 243);
+				background-color: rgb(255, 255, 255);
 			}
 		</style>
 	</head>
 	<body>
-		<%if (data.deeplink) { %>
-		<h1>Redirecting</h1>
-		<% } else { %>
 		<h1>Result</h1>
-		<% } %>
 		<br />
 		<br />
 		<%if (data.link) { %>
-		<h2 id="copy" onclick="copyFunction()"><%= data.link %></h2>
-		<p>Click to copy</p>
-		<% } %>
-		<br />
-		<br />
-		<%if (data.deeplink) { %>
-		<h5>Agent : <%= data.agent %></h5>
-		<a id="redirectLink" href="<%= data.deeplink %>">
-			<button>Click To open APP</button>
-		</a>
-		<% } %>
-		<br />
-		<br />
+			<h2 id="copy"><%= data.link %></h2>
+			<button id="button"  onclick="copyFunction()">Click to copy</button>
+			<br />
+			<br />
+		<% } %>	
+		
 		<%if (data.message) { %>
-		<h3><%= data.message %></h3>
+			<h3><%= data.message %></h3>
 		<% } %>
 
 		<script>
 			function copyFunction() {
 				let copyText = document.getElementById("copy");
 				navigator.clipboard.writeText(copyText.innerText);
-				alert("Copied the text: " + copyText.innerText);
-			}
-
-			if ("<%= data.deeplink %>") {
-
-				let isVisible = true;
-				document.addEventListener('visibilitychange', function() {
-					if (document.visibilityState === 'visible') {
-						isVisible = true;
-					} else {
-						isVisible = false;
-					}
-				});
-
-				//store fallback only if not desktop
-				if("<%=data.agent%>" != "DESKTOP"){
-					console.log("store registered")
-					setTimeout(function () {
-						//FOR IOS Users
-						if ("<%=data.agent%>" == "IOS") {
-							if("<%= data.appStore%>"){
-								const client ="<%= data.appStoreCode %>"[Intl.DateTimeFormat().resolvedOptions().timeZone] || "us";
-								const appLink = "<%= data.appStore %>";
-								window.location.replace(appLink.replace("/in/", "/" + client + "/"));
-							}else{
-								window.location.replace("<%= data.fallback %>");
-							}
-						} else {//For Android users
-							if("<%=data.playstoreDeepLink%>"){
-								window.location.href = "<%= data.playstoreDeepLink %>";
-							}else if("<%=data.playstore%>"){
-								window.location.replace("<%= data.playstore %>");
-							}else{
-								window.location.replace("<%= data.fallback %>");
-							}
-						}
-					}, 2200);
-				}
-
-				//orignal url fallback
-				console.log("fallback registered")
-				setTimeout(function () {
-					if (isVisible) {
-						console.log("fallback exectued")
-						window.location.replace("<%= data.fallback %>");
-					}
-				}, 4000);
-
-				//orignal deeplink 
-				console.log("orignal Tried")
-				//window.location.replace("<%= data.deeplink %>");
-				window.location.href = "<%= data.deeplink %>";
+				document.getElementById("button").innerText = "Copied!";
 			}
 		</script>
 	</body>
