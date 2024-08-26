@@ -248,8 +248,6 @@ const timeZoneCountryMapping = {
     "Indian/Comoro": "km",
     "Indian/Mayotte": "yt",
     "Libya": "ly",
-  
-    // America
     "America/Atka": "us",
     "America/Aleutian": "us",
     "US/Alaska": "us",

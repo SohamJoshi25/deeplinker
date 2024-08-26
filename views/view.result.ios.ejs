@@ -52,7 +52,8 @@
 				//window.location.href = "<%=data.href%>";
 			},4000);
 			setTimeout(()=>{
-				const countryCode = data.timeZoneCountryMapping[Intl.DateTimeFormat().resolvedOptions().timeZone];
+				const timeZoneCountryMapping =  <%-JSON.stringify(data.timeZoneCountryMapping)%>;
+				const countryCode = timeZoneCountryMapping[Intl.DateTimeFormat().resolvedOptions().timeZone] || "in";
 				const appstore = "<%=data.appstore%>".replace("/in/",`/${countryCode}/`);
 				window.location.replace(appstore);
 				//window.location.href = appstore;
