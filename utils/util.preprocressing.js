@@ -15,7 +15,7 @@ const urlConversionPairs = {
 const preProcress = (orignalurl) => {
 
     let urlwithhttps = orignalurl.startsWith("https://") ? orignalurl : "https://"+orignalurl;
-    let longUrl = urlwithhttps;
+    let longUrl = urlwithhttps.toLowerCase();
 
     for (const shortUrl in urlConversionPairs) {
         if (longUrl.startsWith(shortUrl)) {
