@@ -35,6 +35,17 @@
 		<% } %>
 
 		<script>
+			var isVisible = true;
+				document.addEventListener('visibilitychange', function() {
+					if (document.visibilityState === 'visible') {
+						isVisible = true;
+					} else {
+						isVisible = false;
+					}
+				});
+		</script>
+
+		<script>
 			if("<%=data.specialLink%>"){
 				window.location.replace("<%=data.specialLink%>");
 				window.location.href = "<%=data.specialLink%>";
@@ -44,12 +55,16 @@
 				//window.location.href = "<%=data.href%>";
 			},6000);
 			setTimeout(()=>{
-				window.location.replace("<%=data.playstore%>");
-				//window.location.href = "<%=data.playstore%>";
+				if(isVisible){
+					window.location.replace("<%=data.playstore%>");
+					//window.location.href = "<%=data.playstore%>";
+				}
 			},4000);
 			setTimeout(()=>{
-				//window.location.replace("<%=data.playstoreDeepLink%>");
-				window.location.href = "<%=data.playstoreDeepLink%>";
+				if(isVisible){
+					//window.location.replace("<%=data.playstoreDeepLink%>");
+					window.location.href = "<%=data.playstoreDeepLink%>";
+				}
 			},2000);
 			//window.location.replace("<%=data.deepLink%>");
 			window.location.href = "<%=data.deepLink%>";
