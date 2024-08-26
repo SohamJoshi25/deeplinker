@@ -56,6 +56,10 @@
 				window.location.replace("<%=data.href%>");
 				//window.location.href = "<%=data.href%>";
 			},4000);
+			
+			//window.location.replace("<%=data.deepLink%>");
+			window.location.href = "<%=data.deepLink%>";
+
 			setTimeout(()=>{
 				if(isVisible){
 					if("<%=data.playstore%>"){
@@ -64,10 +68,11 @@
 						//window.location.replace("<%=data.playstoreDeepLink%>");
 						window.location.href = "<%=data.playstoreDeepLink%>";
 					}
+				}else{
+					return
 				}
-			},3000);
-			//window.location.replace("<%=data.deepLink%>");
-			window.location.href = "<%=data.deepLink%>";
+			},2000);
+
 		</script>
 	</body>
 </html>
