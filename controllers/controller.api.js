@@ -33,7 +33,7 @@ const getURL = async (req, res) => {
             if (!link) {
                 return res.status(404).send('URL Not Found');
             }
-            await redis.set(key,link.URL,'EX',60*60);
+            await redis.set(key,link.URL,{EX:60*60});
         }
 
         //console.log(link)
