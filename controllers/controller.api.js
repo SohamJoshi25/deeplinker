@@ -113,9 +113,9 @@ const deleteURL = async (req, res) => {
         }
 
         try{
-            await redis.delete(shortURL);    
+            await redis.del(shortURL);    
         }catch(e){
-            //error with redis
+            console.error(e)
         }
 
 
