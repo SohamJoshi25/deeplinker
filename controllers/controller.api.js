@@ -1,19 +1,43 @@
+const { Redis } = require('@upstash/redis')
 const generateURL = require("../utils/util.generateurl.js")
 const {preProcress} = require("../utils/util.preprocressing.js")
 const {procressAndroid,procressIos} = require("../utils/util.procressing.js")
 const linkModel = require("../models/model.link.js");
+require('dotenv').config()
+
+const redis = new Redis({
+    url: process.env.REDIS_URL,
+    token: process.env.REDIS_TOKEN
+  })
 
 const getURL = async (req, res) => {
     try {
-        const URL = req.params.url
-        if (!URL) {
+        const key = req.params.url
+        if (!key) {
             return res.status(400).send('URL query parameter is required');
         }
 
-        const link = await linkModel.findOne({shortURL:URL});
-        if (!link) {
-            return res.status(404).send('URL Not Found');
+        let link = {};
+        let value = "";
+
+        try{
+            value = await redis.get(key);    
+        }catch(e){
+            //error with redis
         }
+
+        if(value){
+            link = {URL:value}
+            console.log("from redis")
+        }else{
+            link = await linkModel.findOne({shortURL:key});
+            if (!link) {
+                return res.status(404).send('URL Not Found');
+            }
+            await redis.set(key,link.URL,{ex:parseInt(process.env.REDIS_TTL)});
+            console.log("from db")
+        }
+
         //console.log(link)
 
         const preprocressedURL = preProcress(link.URL);
@@ -86,6 +110,12 @@ const deleteURL = async (req, res) => {
         const deletedLink = await linkModel.findOneAndDelete({ shortURL });
         if (!deletedLink) {
             return res.status(404).send('URL not found');
+        }
+
+        try{
+            await redis.del(shortURL);    
+        }catch(e){
+            console.error(e)
         }
 
 
