@@ -28,12 +28,14 @@ const getURL = async (req, res) => {
 
         if(value){
             link = {URL:value}
+            console.log("from redis")
         }else{
             link = await linkModel.findOne({shortURL:key});
             if (!link) {
                 return res.status(404).send('URL Not Found');
             }
-            await redis.set(key,link.URL,{EX:60*60});
+            await redis.set(key,link.URL,{ex:parseInt(process.env.REDIS_TTL)});
+            console.log("from db")
         }
 
         //console.log(link)
