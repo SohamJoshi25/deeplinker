@@ -3,43 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="styles/style.create.css" type="text/css"> -->
     <title>DeepLinker | Create</title>
     <style>
-        body{
-            background-color: azure;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 60vh;
+            min-height: 100vh;
+            color: #1e293b;
+            padding: 2rem;
         }
-        h1{
+
+        h1 {
             text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
-        form{
+
+        div {
+            margin-bottom: 2rem;
+        }
+
+        div > * {
+            margin: 0.5rem;
+        }
+
+        a {
+            background: #f1f5f9;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
+            background: #0ea5e9;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        form {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            background: white;
+            padding: 4rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            border: 1px solid #e2e8f0;
+            min-width: 400px;
         }
-        form>*{
-            margin: 0.5em;
-            padding: 0.5em;
+
+        form > * {
+            margin: 0.75rem;
+            padding: 0.75rem;
         }
-        div>*{
-            margin: 0.5em;
-        }
-        input{
+
+        input {
             width: 120%;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.2s ease;
+            background: #f8fafc;
         }
-        a{
-            background-color: rgb(185, 178, 236);
-            padding: 0.5em;
-            border-radius: 0.5em;
-            box-shadow: inset;
-            text-decoration: none;
-            color: black;
+
+        input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            background: white;
+        }
+
+        input::placeholder {
+            color: #64748b;
+        }
+
+        button {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            min-width: 120px;
+        }
+
+        button:hover {
+            background: #0284c7;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            form {
+                min-width: 300px;
+                padding: 1.5rem;
+            }
+            
+            input {
+                width: 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -49,13 +134,10 @@
         <a href="/">Home</a>
         <a href="/delete">Delete</a>
     </div>
-    <br>
-    <br>
-    <br>
+    
     <form action="/api/" method="post">
         <input placeholder="Input URL" type="url" name="url" id="link" required>
         <button type="submit">Submit</button>
     </form>
-
 </body>
 </html>

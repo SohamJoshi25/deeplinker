@@ -20,11 +20,11 @@ const getURL = async (req, res) => {
         let link = {};
         let value = "";
 
-        try{
-            value = await redis.get(key);    
-        }catch(e){
-            //error with redis
-        }
+        // try{
+        //     value = await redis.get(key);    
+        // }catch(e){
+        //     //error with redis
+        // }
 
         if(value){
             link = {URL:value}
@@ -34,7 +34,7 @@ const getURL = async (req, res) => {
             if (!link) {
                 return res.status(404).send('URL Not Found');
             }
-            await redis.set(key,link.URL,{ex:parseInt(process.env.REDIS_TTL)});
+            //await redis.set(key,link.URL,{ex:parseInt(process.env.REDIS_TTL)});
             console.log("from db")
         }
 

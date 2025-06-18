@@ -5,47 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DeepLinker | Home</title>
     <style>
-        body{
-            background-color: azure;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 50vh;
-        }
-        h1{
-            text-align: center;
-        }
-        form{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        div>*{
-            margin: 0.5em;
-        }
-        a{
-            background-color: rgb(185, 178, 236);
-            padding: 0.5em;
-            border-radius: 0.5em;
-            box-shadow: inset;
-            text-decoration: none;
-            color: black;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d6f5d6 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: start;
+            min-height: 100vh;
+            color: #1e293b;
+            padding: 1rem;
+            padding-top: 15rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            color: #00402e;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        div {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        div > * {
+            margin: 0.5rem;
+        }
+
+        a {
+            background: #f1f5f9;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 0.6rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        a:hover {
+            background: #059669;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            div {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            a {
+                min-width: 200px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>WELCOME TO DEEPLINKER</h1>
     <h2>HOME</h2>
-    <br>
-    <br>
+    
     <div>       
         <a href="/create">Create</a>
         <a href="/delete">Delete</a>
     </div>
-    <br>
-    <br>
 </body>
 </html>

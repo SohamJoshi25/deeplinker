@@ -3,44 +3,159 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>DeepLinker</title>
+		<title>DeepLinker | Result</title>
 		<style>
-			body {
-				background-color: rgba(242, 254, 254, 0.955);
-			}
 			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+				color: #1e293b;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				padding: 2rem;
+			}
+
+			.container {
+				background: white;
+				padding: 2.5rem;
+				border-radius: 12px;
+				box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+				border: 1px solid #e2e8f0;
+				max-width: 600px;
+				width: 100%;
 				text-align: center;
 			}
-			#copy{
-				overflow-wrap: break-word;
+
+			h1 {
+				font-size: 2.5rem;
+				color: #0ea5e9;
+				margin-bottom: 2rem;
+				font-weight: 700;
 			}
+
+			#copy {
+				background: #f8fafc;
+				padding: 1rem;
+				border-radius: 8px;
+				border: 2px solid #e2e8f0;
+				font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+				font-size: 1.1rem;
+				color: #059669;
+				margin-bottom: 1.5rem;
+				overflow-wrap: break-word;
+				word-break: break-all;
+			}
+
 			button {
-				padding: 1em;
-				border-radius: 1em;
-				background-color: rgb(255, 255, 255);
+				padding: 0.75rem 1.5rem;
+				border-radius: 8px;
+				border: none;
+				font-size: 1rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.2s ease;
+				margin: 0.5rem;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
+
+			#button {
+				background: #059669;
+				color: white;
+			}
+
+			#button:hover {
+				background: #047857;
+				transform: translateY(-1px);
+			}
+
+			.home-btn {
+				background: #6366f1;
+				color: white;
+			}
+
+			.home-btn:hover {
+				background: #4f46e5;
+				transform: translateY(-1px);
+			}
+
+			h3 {
+				color: #dc2626;
+				font-size: 1.2rem;
+				margin-bottom: 2rem;
+			}
+
+			.success-message {
+				color: #059669 !important;
+			}
+
+			.button-group {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				flex-wrap: wrap;
+				margin-top: 1rem;
+			}
+
+			@media (max-width: 768px) {
+				.container {
+					padding: 2rem 1.5rem;
+					margin: 1rem;
+				}
+
+				h1 {
+					font-size: 2rem;
+				}
+
+				.button-group {
+					flex-direction: column;
+					align-items: center;
+				}
+
+				button {
+					min-width: 200px;
+				}
 			}
 		</style>
 	</head>
 	<body>
-		<h1>Result</h1>
-		<br />
-		<br />
-		<%if (data.link) { %>
-			<h2 id="copy"><%= data.link %></h2>
-			<button id="button"  onclick="copyFunction()">Click to copy</button>
-			<br />
-			<br />
-		<% } %>	
-		
-		<%if (data.message) { %>
-			<h3><%= data.message %></h3>
-		<% } %>
+		<div class="container">
+			<h1>Result</h1>
+			
+			<%if (data.link) { %>
+				<h2 id="copy"><%= data.link %></h2>
+				<div class="button-group">
+					<button id="button" onclick="copyFunction()">Click to copy</button>
+					<button class="home-btn" onclick="window.location.href='/'">Go Home</button>
+				</div>
+			<% } %>	
+			
+			<%if (data.message) { %>
+				<h3 class="<%= data.link ? 'success-message' : '' %>"><%= data.message %></h3>
+				<% if (!data.link) { %>
+					<button class="home-btn" onclick="window.location.href='/'">Go Home</button>
+				<% } %>
+			<% } %>
+		</div>
 
 		<script>
 			function copyFunction() {
 				let copyText = document.getElementById("copy");
 				navigator.clipboard.writeText(copyText.innerText);
 				document.getElementById("button").innerText = "Copied!";
+				
+				// Reset button text after 2 seconds
+				setTimeout(() => {
+					document.getElementById("button").innerText = "Click to copy";
+				}, 2000);
 			}
 		</script>
 	</body>
