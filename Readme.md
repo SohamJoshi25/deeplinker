@@ -49,7 +49,7 @@ DeepLinker was developed during an internship at Creatssaurus.io to address the 
 
 **Example:**
 
-When a user clicks on a short link like `https://deeplink.er/xyz`, the system will:
+When a user clicks on a short link assume `https://deeplinker.com/xyz`, the system will:
 
 1.  If on Android and `MyApp` is installed, open `myapp://product/123`.
 2.  If on Android and `MyApp` is not installed, redirect to `https://play.google.com/store/apps/details?id=com.myapp`.
